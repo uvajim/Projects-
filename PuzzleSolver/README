@@ -1,0 +1,12 @@
+This is a puzzle solver that I made. It utilizes an adjaceny list and then runs a topological search breadth first search on proceduraly generated permutations. 
+** PREVIOUSLY GENERATED PERMUTATIONS WILL NOT BE VISITED TWICE**
+
+When the goal state is found, it will then print the path using recursion. 
+
+-CURRENT ISSUES THAT NEED TO BE RESOLVED
+
+  -If the original state is the goal state, it will say that the amount of moves needed is 1, but is actually 0.
+  -No error checking, so entering an invalid board will result in wrong answers, but sometimes might output "IMPOSSIBLE"
+  -Sometimes does not come up with the most optimal solution, but that is mostly due to breadth first search. I would have to
+  change to another more efficent algorithm.
+  
