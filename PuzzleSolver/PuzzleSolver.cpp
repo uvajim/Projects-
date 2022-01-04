@@ -124,9 +124,6 @@ bool getNeighbors(){
  * @param s the string that represents the board to be checked; a string
  * 
  * @return a false if it is solvable, true if it is not
- *
- * @note used the explanation from https://math.stackexchange.com/questions/293527/how-to-check-if-a-8-puzzle-is-solvable
- *       not the YouTube video provided, sorry!
  */
 bool notSolvable(string s){
 	int inversions = 0;
@@ -146,20 +143,24 @@ void printPath(Node *n){
 
 	int step = n->getMove();
 
-	if (step == 1){
-		cout<< "Move down"<<"\n";
-	}
-	if (step == 2){
-		cout<< "Move up" << "\n";
-	}
+	switch (step){
 
-	if (step == 3){
-		cout<<"Move right" <<"\n";
-	}
+		case 1:
+			cout<< "Move down"<<"\n";
+			break;
 
-	if (step == 4){
-		cout<<"Move left" <<"\n";
-	}
+		case 2:
+			cout<< "Move up" << "\n";
+			break;
+	
+		case 3:
+			cout<<"Move right" <<"\n";
+			break;
+	
+		case 4:
+			cout<<"Move left" <<"\n";
+			break;
+		}
 
 	string s = n->getState();
 	int counter = 0;
@@ -207,12 +208,10 @@ int main(){
   for (char c: b){
   	if(!isspace(c)) start += c;
   }
-  for (char e: c){
-  	if(!isspace(e)) start += e;
+  for (char c: c){
+  	if(!isspace(c)) start += c;
   }
 
-
-	
 	vector<Node*> starting;
 	Node *starter = new Node(start, NULL, 0);
 	starting.push_back(starter);
@@ -221,7 +220,7 @@ int main(){
 
 	//make a queue of vectors
 
-if(!notSolvable(start)){
+if(!notSolvable(start) && match != start){
 	while(getNeighbors() == true){
 		//getNeighbors();
 		moves++;
@@ -229,11 +228,13 @@ if(!notSolvable(start)){
 	moves++;
 	cout<<moves<<endl;
 }
+else if (match == start){
+		cout<<"0"<<endl;
+}
 else{
 	cout<<"IMPOSSIBLE"<<endl;
 	
 }
 return 0;
-
 
 }
